@@ -70,7 +70,12 @@ namespace UnitConverter
         {
             Console.CancelKeyPress += (sender, ev) =>
             {
-                Console.WriteLine("Encerrando a aplicação...");
+                Console.BackgroundColor = ConsoleColor.Yellow;
+                Console.ForegroundColor = ConsoleColor.Black;
+                Console.WriteLine("Ctrl + C pressionado. Encerrando a aplicação...");
+                Thread.Sleep(500);
+                Console.WriteLine("Aplicação encerrada...");
+                Console.ResetColor();
                 Environment.Exit(0);
             };
         }
