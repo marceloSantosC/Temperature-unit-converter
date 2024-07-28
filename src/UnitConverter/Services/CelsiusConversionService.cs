@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.Immutable;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UnitConverter.src.UnitConverter.Models.Enumeration;
+﻿using System.Collections.Immutable;
+using UnitConverter.Models.Enumeration;
 
-namespace UnitConverter.src.UnitConverter.Services
+namespace UnitConverter.Services
 {
     internal class CelsiusConversionService : ITemperatureConversionService
     {

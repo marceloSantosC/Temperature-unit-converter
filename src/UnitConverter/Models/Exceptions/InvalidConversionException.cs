@@ -1,6 +1,6 @@
-﻿using UnitConverter.src.UnitConverter.Models.Enumeration;
+﻿using UnitConverter.Models.Enumeration;
 
-namespace UnitConverter.src.UnitConverter.Models.Exceptions
+namespace UnitConverter.Models.Exceptions
 {
     public class InvalidConversionException(TemperatureUnits From, TemperatureUnits To) : Exception
     {

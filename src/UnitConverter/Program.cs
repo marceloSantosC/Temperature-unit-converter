@@ -1,25 +1,19 @@
 ﻿
 using System.Collections.Immutable;
-using UnitConverter.src.UnitConverter.Models.Enumeration;
-using UnitConverter.src.UnitConverter.Models.Exceptions;
-using UnitConverter.src.UnitConverter.Services;
+using UnitConverter.Models.Enumeration;
+using UnitConverter.Models.Exceptions;
+using UnitConverter.Services;
 
-namespace UnitConverter.src.UnitConverter
+namespace UnitConverter
 {
     public static class Program
     {
         public static void Main(string[] args)
         {
             ImmutableList<ITemperatureConversionService> conversors = InitializeConversors();
-            TemperatureConversionService temperatureConversionService = new TemperatureConversionService(conversors);
+            TemperatureConversionService temperatureConversionService = new(conversors);
 
-            Console.CancelKeyPress += (sender, ev) =>
-            {
-                Console.WriteLine("Encerrando a aplicação...");
-                Environment.Exit(0);
-            };
-
-
+            RegisterListenersForKeyboardEvents();
 
 
             bool justStarted = true;
@@ -34,10 +28,9 @@ namespace UnitConverter.src.UnitConverter
                         justStarted = false;
                     }
 
-                    Console.BackgroundColor = ConsoleColor.Yellow;
-                    Console.ForegroundColor = ConsoleColor.Black;
-                    Console.WriteLine("Pressione CTRL + C para sair.");
-                    Console.ResetColor();
+                    ShowStartupInfo();
+
+
 
                     TemperatureUnits convertFrom = AskTheTemperatureUnit("Qual a unidade de conversão a partir da qual a temperatura será convertida?");
                     TemperatureUnits convertTo = AskTheTemperatureUnit("Qual a unidade de conversão para qual a temperatura será convertida?");
@@ -62,6 +55,24 @@ namespace UnitConverter.src.UnitConverter
             }
 
 
+        }
+
+        private static void ShowStartupInfo()
+        {
+            Console.BackgroundColor = ConsoleColor.Yellow;
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.WriteLine("Pressione CTRL + C para sair.");
+            Console.ResetColor();
+        }
+
+
+        private static void RegisterListenersForKeyboardEvents()
+        {
+            Console.CancelKeyPress += (sender, ev) =>
+            {
+                Console.WriteLine("Encerrando a aplicação...");
+                Environment.Exit(0);
+            };
         }
 
         private static void ShowStartingOutput()

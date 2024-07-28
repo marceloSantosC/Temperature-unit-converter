@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UnitConverter.src.UnitConverter.Models.Enumeration
+namespace UnitConverter.Models.Enumeration
 {
     public class TemperatureConversions
     {

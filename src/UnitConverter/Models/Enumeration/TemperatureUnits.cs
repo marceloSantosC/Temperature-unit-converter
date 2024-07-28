@@ -6,7 +6,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace UnitConverter.src.UnitConverter.Models.Enumeration
+namespace UnitConverter.Models.Enumeration
 {
 
     public enum TemperatureUnits

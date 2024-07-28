@@ -1,7 +1,7 @@
 ﻿using System.Collections.Immutable;
-using UnitConverter.src.UnitConverter.Models.Enumeration;
+using UnitConverter.Models.Enumeration;
 
-namespace UnitConverter.src.UnitConverter.Services
+namespace UnitConverter.Services
 {
     internal class FahrenheintConversionService : ITemperatureConversionService
     {

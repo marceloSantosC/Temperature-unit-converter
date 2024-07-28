@@ -1,23 +1,15 @@
 ﻿using System.Collections.Immutable;
-using UnitConverter.src.UnitConverter.Models.Enumeration;
-using UnitConverter.src.UnitConverter.Models.Exceptions;
+using UnitConverter.Models.Enumeration;
+using UnitConverter.Models.Exceptions;
 
-namespace UnitConverter.src.UnitConverter.Services
+namespace UnitConverter.Services
 {
-    class TemperatureConversionService
+    public class TemperatureConversionService(ImmutableList<ITemperatureConversionService> _conversionServices)
     {
-
-        private readonly ImmutableList<ITemperatureConversionService> conversionServices;
-
-        public TemperatureConversionService(ImmutableList<ITemperatureConversionService> conversionServices) {
-            this.conversionServices = conversionServices;
-        }
-
-
         public double ConvertTemperature(TemperatureUnits from, TemperatureUnits to, double temperature)
         {
-            var conversionService = conversionServices.Find(service => service.CanConvert(from, to)) ??
-                                throw new InvalidConversionException(from, to);
+            var conversionService = _conversionServices.Find(service => service.CanConvert(from, to)) ??
+                                    throw new InvalidConversionException(from, to);
             return conversionService.Convert(to, temperature);
         }
 
