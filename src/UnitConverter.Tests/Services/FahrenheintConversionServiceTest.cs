@@ -1,16 +1,11 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using UnitConverter.Models.Enumeration;
 using UnitConverter.Services;
 
-namespace UnitConverter.src.UnitConverter.Tests.Services
+namespace UnitConverter.Tests.Services
 {
     [TestClass]
-    class FahrenheintConversionServiceTest
+    public class FahrenheintConversionServiceTest
     {
 
         private readonly FahrenheintConversionService _service = FahrenheintConversionService.Instance;
@@ -30,6 +25,16 @@ namespace UnitConverter.src.UnitConverter.Tests.Services
             bool actualResult = _service.CanConvert(from, to);
 
             Assert.AreEqual(expectedResult, actualResult, $"Failed for conversion from {from} to {to}");
+        }
+
+        [TestMethod]
+        [DataRow(TemperatureUnits.Kelvin, 0D, 255.37)]
+        [DataRow(TemperatureUnits.Celsius, 0D, -17.78)]
+        public void Convert_ShouldReturnExpectedValue(TemperatureUnits convertTo, double value, double expectedResult)
+        {
+            double actualResult = _service.Convert(convertTo, value);
+
+            Assert.AreEqual(expectedResult, actualResult, $"Invalid {convertTo} conversion result for value {value} , expected {expectedResult} but was {actualResult}");
         }
 
     }

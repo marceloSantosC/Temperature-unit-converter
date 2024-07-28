@@ -36,12 +36,15 @@ namespace UnitConverter.Services
 
         private double ConvertToKelvin(double celsiusValue)
         {
-            return celsiusValue + 273.15;
+            double result = celsiusValue + 273.15;
+            return Math.Round(result, 2, MidpointRounding.ToEven);
         }
 
         private double ConvertToFahrenheit(double celsiusValue)
         {
-            return celsiusValue * 1.8 + 32;
+            double result = celsiusValue * 1.8 + 32;          
+            return Math.Round(result);
+
         }
 
     }

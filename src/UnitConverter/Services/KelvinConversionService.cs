@@ -38,12 +38,14 @@ namespace UnitConverter.Services
 
         private static double ConvertToCelsius(double kelvinValue)
         {
-            return kelvinValue - 273.15;
+            double result = kelvinValue - 273.15;
+            return Math.Round(result, 2, MidpointRounding.ToEven);
         }
 
         private static double ConvertToFahrenheit(double kelvinValue)
         {
-            return (kelvinValue - 273) * 1.8 + 32;
+            double result = (kelvinValue - 273.15) * 1.8 + 32;
+            return Math.Round(result, 2, MidpointRounding.ToEven); 
         }
 
     }

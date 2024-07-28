@@ -27,5 +27,15 @@ namespace UnitConverter.Tests.Services
 
             Assert.AreEqual(expectedResult, actualResult, $"Failed for conversion from {from} to {to}");
         }
+
+        [TestMethod]
+        [DataRow(TemperatureUnits.Celsius, 0D, -273.15D)]
+        [DataRow(TemperatureUnits.Fahrenheit, 0D, -459.67D)]
+        public void Convert_ShouldReturnExpectedValue(TemperatureUnits convertTo, double value, double expectedResult)
+        {
+            double actualResult = _service.Convert(convertTo, value);
+
+            Assert.AreEqual(expectedResult, actualResult, $"Invalid {convertTo} conversion result for value {value} , expected {expectedResult} but was {actualResult}");
+        }
     }
 }
